@@ -7,9 +7,9 @@
 	}
 </style>
 <body>
-<script src="../../../vendor/three.js/build/three.min.js"></script>
+<script src="./vendor/three.js/build/three.min.js"></script>
 <script src="../threex.daynight.js"></script>
-<script src="../../../vendor/three.js/examples/js/controls/OrbitControls.js"></script>
+<script src="./vendor/three.js/examples/js/controls/OrbitControls.js"></script>
 <script>
 
 	var camera, scene, renderer, sky;
@@ -53,7 +53,17 @@
 
 	onRenderFcts.push(function(delta, now){
 		sunRotation += Math.PI / cycleDuration;
-	})
+  })
+  
+  //////////////////////////////////////////////////////////////////////////////////
+  //		starfield							//
+  //////////////////////////////////////////////////////////////////////////////////
+
+  var starField = new THREEx.DayNight.StarField()
+  scene.add(starField.object3d)
+  onRenderFcts.push(function (delta, now) {
+    starField.update(sunRotation)
+  })
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		sunSphere							//
